@@ -5,10 +5,11 @@ import java.util.TimerTask;
 public class TravelTasks extends TimerTask {
 
     private Speed speed;
-    private Distance distance = new Distance();
+    private Distance distance;
 
-    TravelTasks(Speed s) {
+    TravelTasks(Speed s, Distance d) {
         speed = s;
+        distance = d;
     }
 
     @Override
@@ -28,12 +29,10 @@ public class TravelTasks extends TimerTask {
 
     private void averageSpeedSampler(){
         try {
-            distance.saveSpeed(speed.getSpeed());
+            distance.calculateTotalDistance(speed.getSpeedAsInt());
         }
         catch(Exception e){
             e.printStackTrace();
         }
     }
-
-
 }

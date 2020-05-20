@@ -4,13 +4,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Line;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.Travel;
@@ -19,6 +16,8 @@ public class Dashboard extends Application {
 
     private Travel travel = new Travel();
     private boolean cruiseControlFlag = true;
+    private boolean rilIsActive = false;
+    private boolean lilIsActive = false;
 
 
     @Override
@@ -26,27 +25,30 @@ public class Dashboard extends Application {
         BorderPane border = new BorderPane();
         border.setStyle("-fx-background-color:black;");
         Scene scene = new Scene(border);
-        border.setMinSize(600,400);
-
-        Group lil = new LeftIndicatorLight().getGroup();
-        Group ril = new RightIndicatorLight().getGroup();
-
-        SpeedViewer sv = new SpeedViewer(travel);
-        border.setCenter(sv.getPointerNeedle());
-        border.setBottom(sv.getLabel());
-
-
-//        VBox root = new VBox();
-//        root.setMinSize(350, 250);
-//        root.getChildren().add(sv.getLabel());
+        border.setMinSize(800,600);
+        Speedometer speedometer = new Speedometer(travel);
+        TravelInformation travelInformation = new TravelInformation(travel);
 
         KeyFrame labelUpdate = new KeyFrame(Duration.millis(5), e -> {
-            sv.labelUpdate();
-            sv.needleUpdate();
-        });
+            travelInformation.updateSpeedLabel();
+            travelInformation.updateTotalOdometerLabel();
+            travelInformation.updateFirstDailyOdometerLabel();
+            travelInformation.updateSecondDailyOdometerLabel();
+            speedometer.updateNeedle();
 
+        });
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(labelUpdate);
+
+        AdditionalLights controlLight = new AdditionalLights();
+        border.setTop(controlLight.getAdditionalLightsGroup());
+        border.setCenter(speedometer.getSpeedometerGroup());
+        border.setBottom(travelInformation.getGroup());
+
+        LeftIndicatorLight lil = new LeftIndicatorLight();
+        RightIndicatorLight ril = new RightIndicatorLight();
+        border.setLeft(lil.getGroup());
+        border.setRight(ril.getGroup());
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
@@ -61,34 +63,50 @@ public class Dashboard extends Application {
                 }
 
                 if (ke.getCode() == KeyCode.LEFT) {
-                    border.getChildren().remove(ril);
-                    if(!border.getChildren().contains(lil)){
-                        border.setLeft(lil);
+                    if (rilIsActive) {
+                        ril.turnOff();
+                        rilIsActive = false;
                     }
-                    else {
-                        border.getChildren().remove(lil);
+
+                    if (lilIsActive) {
+                        lil.turnOff();
+                        lilIsActive = false;
+                    } else {
+                        lil.turnOn();
+                        lilIsActive = true;
                     }
                 }
 
                 if (ke.getCode() == KeyCode.RIGHT) {
-                    border.getChildren().remove(lil);
-                    if(!border.getChildren().contains(ril)){
-                        border.setRight(ril);
+                    if (lilIsActive) {
+                        lil.turnOff();
+                        lilIsActive = false;
                     }
-                    else {
-                        border.getChildren().remove(ril);
+                    if (rilIsActive) {
+                        ril.turnOff();
+                        rilIsActive = false;
+                    } else {
+                        ril.turnOn();
+                        rilIsActive = true;
                     }
                 }
-                if(ke.getCode() == KeyCode.T){
-                    if(cruiseControlFlag){
-                        travel.cruiseControlModeOn();
-                        cruiseControlFlag = false;
-                    }
-                    else {
-                        travel.cruiseControlModeOff();
-                        cruiseControlFlag = true;
-                    }
-
+                if (ke.getCode() == KeyCode.T) {
+                    travel.cruiseController();
+                }
+                if(ke.getCode() == KeyCode.A) {
+                    controlLight.hblController();
+                }
+                if(ke.getCode() == KeyCode.S) {
+                    controlLight.dblController();
+                }
+                if(ke.getCode() == KeyCode.D){
+                    controlLight.sdlController();
+                }
+                if(ke.getCode() == KeyCode.F) {
+                    controlLight.rflController();
+                }
+                if(ke.getCode() == KeyCode.G) {
+                    controlLight.fflController();
                 }
             }
         });
@@ -96,8 +114,8 @@ public class Dashboard extends Application {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-        stage.setX(600);
-        stage.setY(300);
+        stage.setX(300);
+        stage.setY(200);
         stage.setMinHeight(600);
         stage.setMinWidth(800);
         stage.setScene(scene);

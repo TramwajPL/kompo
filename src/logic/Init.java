@@ -1,9 +1,7 @@
 package logic;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import view.Dashboard;
-import view.SpeedViewer;
 
 public class Init {
 
