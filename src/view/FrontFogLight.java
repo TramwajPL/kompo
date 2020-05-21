@@ -8,7 +8,7 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrontFogLight implements IndicatorLight{
+public class FrontFogLight implements Light {
 
     private Group group = new Group();
     private List<Line> lines = new ArrayList<>();
@@ -121,5 +121,13 @@ public class FrontFogLight implements IndicatorLight{
     @Override
     public Group getGroup() {
         return group;
+    }
+
+    public void changeMode(boolean mode) {
+        if(mode){
+            turnOn();
+        }
+        else
+            turnOff();
     }
 }

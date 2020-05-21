@@ -15,10 +15,6 @@ import logic.Travel;
 public class Dashboard extends Application {
 
     private Travel travel = new Travel();
-    private boolean cruiseControlFlag = true;
-    private boolean rilIsActive = false;
-    private boolean lilIsActive = false;
-
 
     @Override
     public void start(Stage stage) {
@@ -27,28 +23,28 @@ public class Dashboard extends Application {
         Scene scene = new Scene(border);
         border.setMinSize(800,600);
         Speedometer speedometer = new Speedometer(travel);
-        TravelInformation travelInformation = new TravelInformation(travel);
+        TravelInformationPanel travelInformation = new TravelInformationPanel(travel);
 
         KeyFrame labelUpdate = new KeyFrame(Duration.millis(5), e -> {
             travelInformation.updateSpeedLabel();
             travelInformation.updateTotalOdometerLabel();
             travelInformation.updateFirstDailyOdometerLabel();
             travelInformation.updateSecondDailyOdometerLabel();
+            travelInformation.updateJourneyTime();
             speedometer.updateNeedle();
 
         });
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(labelUpdate);
 
-        AdditionalLights controlLight = new AdditionalLights();
-        border.setTop(controlLight.getAdditionalLightsGroup());
+        LightsController lightsController = new LightsController();
+        border.setTop(lightsController.getLightsGroup());
         border.setCenter(speedometer.getSpeedometerGroup());
         border.setBottom(travelInformation.getGroup());
 
-        LeftIndicatorLight lil = new LeftIndicatorLight();
-        RightIndicatorLight ril = new RightIndicatorLight();
-        border.setLeft(lil.getGroup());
-        border.setRight(ril.getGroup());
+        DirectionIndicatorsController dic = new DirectionIndicatorsController();
+        border.setLeft(dic.getLil());
+        border.setRight(dic.getRil());
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
@@ -61,52 +57,29 @@ public class Dashboard extends Application {
                 if (ke.getCode() == KeyCode.DOWN) {
                     travel.brake();
                 }
-
                 if (ke.getCode() == KeyCode.LEFT) {
-                    if (rilIsActive) {
-                        ril.turnOff();
-                        rilIsActive = false;
-                    }
-
-                    if (lilIsActive) {
-                        lil.turnOff();
-                        lilIsActive = false;
-                    } else {
-                        lil.turnOn();
-                        lilIsActive = true;
-                    }
+                    dic.lilController();
                 }
-
                 if (ke.getCode() == KeyCode.RIGHT) {
-                    if (lilIsActive) {
-                        lil.turnOff();
-                        lilIsActive = false;
-                    }
-                    if (rilIsActive) {
-                        ril.turnOff();
-                        rilIsActive = false;
-                    } else {
-                        ril.turnOn();
-                        rilIsActive = true;
-                    }
+                    dic.rilController();
                 }
                 if (ke.getCode() == KeyCode.T) {
                     travel.cruiseController();
                 }
                 if(ke.getCode() == KeyCode.A) {
-                    controlLight.hblController();
+                    lightsController.hblController();
                 }
                 if(ke.getCode() == KeyCode.S) {
-                    controlLight.dblController();
+                    lightsController.dblController();
                 }
                 if(ke.getCode() == KeyCode.D){
-                    controlLight.sdlController();
+                    lightsController.sdlController();
                 }
                 if(ke.getCode() == KeyCode.F) {
-                    controlLight.rflController();
+                    lightsController.rflController();
                 }
                 if(ke.getCode() == KeyCode.G) {
-                    controlLight.fflController();
+                    lightsController.fflController();
                 }
             }
         });

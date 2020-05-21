@@ -5,7 +5,7 @@ import java.util.Timer;
 public class Travel{
 
     private Speed speed = new Speed();
-    private Distance distance = new Distance();
+    private TravelInformation distance = new TravelInformation();
     private boolean isCruiseControlActive = false;
 
     public Travel() {
@@ -52,6 +52,10 @@ public class Travel{
 
     public void brake(){
         speed.brake();
+    }
+
+    public int getJourneyTime(){
+        return distance.getTotalTravelTime();
     }
 
     public void cruiseController(){

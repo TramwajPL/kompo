@@ -5,9 +5,9 @@ import java.util.TimerTask;
 public class TravelTasks extends TimerTask {
 
     private Speed speed;
-    private Distance distance;
+    private TravelInformation distance;
 
-    TravelTasks(Speed s, Distance d) {
+    TravelTasks(Speed s, TravelInformation d) {
         speed = s;
         distance = d;
     }

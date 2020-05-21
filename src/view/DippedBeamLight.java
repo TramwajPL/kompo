@@ -8,7 +8,7 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DippedBeamLight implements IndicatorLight{
+public class DippedBeamLight implements Light {
 
     private Group group = new Group();
     private List<Line> lines = new ArrayList<>();
@@ -102,5 +102,13 @@ public class DippedBeamLight implements IndicatorLight{
 
     public Group getGroup(){
         return group;
+    }
+
+    public void changeMode(boolean mode) {
+        if(mode){
+            turnOn();
+        }
+        else
+            turnOff();
     }
 }

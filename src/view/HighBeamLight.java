@@ -8,7 +8,7 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HighBeamLight implements IndicatorLight {
+public class HighBeamLight implements Light {
 
     private Group group = new Group();
     private List<Line> lines = new ArrayList<>();
@@ -103,4 +103,12 @@ public class HighBeamLight implements IndicatorLight {
         }
     }
 
+    @Override
+    public void changeMode(boolean mode) {
+        if(mode){
+            turnOn();
+        }
+        else
+            turnOff();
+    }
 }

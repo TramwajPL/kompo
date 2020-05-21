@@ -11,5 +11,4 @@ public class ConsoleInterface {
     private void run(){
 
     }
-
 }
