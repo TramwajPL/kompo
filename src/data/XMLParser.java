@@ -2,6 +2,7 @@ package data;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -19,7 +20,7 @@ public class XMLParser {
 	        
 	        FileWriter writer = new FileWriter("book.xml");
 	        jaxbMarshaller.marshal(speeds, writer);
-		} catch (JAXBException e) {
+		} catch (JAXBException | IOException e) {
 			e.printStackTrace();
 		}        
     }

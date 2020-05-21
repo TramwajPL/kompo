@@ -11,6 +11,20 @@ public class Speed {
 
     Speed() {}
 
+    public Speed(double speed, double acceleration, double airResistance) {
+        this.speed = speed;
+        this.acceleration = acceleration;
+        this.airResistance = airResistance;
+    }
+
+    public double getAcceleration() {
+        return acceleration;
+    }
+
+    public double getAirResistance() {
+        return airResistance;
+    }
+
     public void setAirResistance(double airResistance) {
         this.airResistance = airResistance;
     }

@@ -5,11 +5,11 @@ import java.util.Timer;
 public class Travel{
 
     private Speed speed = new Speed();
-    private TravelInformation distance = new TravelInformation();
+    private TravelInformation travelInformation = new TravelInformation();
     private boolean isCruiseControlActive = false;
 
     public Travel() {
-        TravelTasks travelTasks = new TravelTasks(speed,distance);
+        TravelTasks travelTasks = new TravelTasks(speed, travelInformation);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(travelTasks, 0, 1000);
 
@@ -17,25 +17,25 @@ public class Travel{
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
                 System.out.println(speed.getSpeedAsString());
-                distance.getAverageSpeed();
+                travelInformation.getAverageSpeed();
             }
         }));
     }
 
     public void resetFirstOdometer(){
-        distance.setFirstDailyOdometerValue(0);
+        travelInformation.setFirstDailyOdometerValue(0);
     }
 
     public void resetSecondOdometer(){
-        distance.setSecondDailyOdometerValue(0);
+        travelInformation.setSecondDailyOdometerValue(0);
     }
 
     public double getFirstOdometerValue(){
-        return distance.getFirstDailyOdometerValue();
+        return travelInformation.getFirstDailyOdometerValue();
     }
 
     public  double getSecondOdometerValue(){
-        return distance.getSecondDailyOdometerValue();
+        return travelInformation.getSecondDailyOdometerValue();
     }
 
     public String getSpeedAsString(){
@@ -43,7 +43,7 @@ public class Travel{
     }
 
     public double getTotalDistance(){
-        return distance.getTotalDistance();
+        return travelInformation.getTotalDistance();
     }
 
     public void accelerate(){
@@ -55,7 +55,7 @@ public class Travel{
     }
 
     public int getJourneyTime(){
-        return distance.getTotalTravelTime();
+        return travelInformation.getTotalTravelTime();
     }
 
     public void cruiseController(){

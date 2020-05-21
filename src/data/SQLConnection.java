@@ -25,7 +25,6 @@ public class SQLConnection {
 			
 		} catch (Exception ex) {
 			System.err.println("Blad polaczenia z SQL");
-
 		}
 		
 	}

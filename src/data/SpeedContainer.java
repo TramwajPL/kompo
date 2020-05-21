@@ -12,7 +12,7 @@ import logic.ContainerInterface;
 import logic.Speed;
 import logic.TooLargeIndexException;
 
-@XmlRootElement(name="szybkoœci")
+@XmlRootElement(name="szybkoï¿½ci")
 public class SpeedContainer implements Serializable, ContainerInterface<Speed>{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Speed> speeds;
@@ -52,9 +52,8 @@ public class SpeedContainer implements Serializable, ContainerInterface<Speed>{
 	}
 	
 	@Override
-    @XmlElements(@XmlElement(name="szybkoœæ"))
+    @XmlElements(@XmlElement(name="szybkoï¿½ï¿½"))
 	public ArrayList<Speed> getAll() {
 		return speeds;
 	}
-	
 }
