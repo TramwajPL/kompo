@@ -30,9 +30,10 @@ public class Dashboard extends Application {
             travelInformation.updateTotalOdometerLabel();
             travelInformation.updateFirstDailyOdometerLabel();
             travelInformation.updateSecondDailyOdometerLabel();
-            travelInformation.updateJourneyTime();
+            travelInformation.updateJourneyTimeLabel();
+            travelInformation.updateFuelConsumedLabel();
+            travelInformation.updateAverageSpeed();
             speedometer.updateNeedle();
-
         });
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(labelUpdate);

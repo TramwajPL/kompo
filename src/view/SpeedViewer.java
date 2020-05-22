@@ -45,11 +45,11 @@ public class SpeedViewer {
 
 
     public void labelUpdate(){
-        lab.setText(travel.getSpeedString());
+        lab.setText(travel.getSpeedAsString());
     }
 
     public void needleUpdate(){
-        Integer diff = Integer.parseInt(travel.getSpeedString());
+        Integer diff = Integer.parseInt(travel.getSpeedAsString());
 
     }
 

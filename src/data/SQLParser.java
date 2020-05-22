@@ -48,7 +48,6 @@ public class SQLParser {
 			query = "DELETE FROM szybkoœci";
 			st = sql.getCon().prepareStatement(query);
 			st.executeUpdate();
-			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

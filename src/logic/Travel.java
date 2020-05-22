@@ -16,8 +16,7 @@ public class Travel{
         //odpalane na koniec dzialania programu
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
-                System.out.println(speed.getSpeedAsString());
-                travelInformation.getAverageSpeed();
+                //TOooooooooooooooooooo
             }
         }));
     }
@@ -38,13 +37,17 @@ public class Travel{
         return travelInformation.getSecondDailyOdometerValue();
     }
 
-    public String getSpeedAsString(){
-        return speed.getSpeedAsString();
+    public int getJourneyTime(){
+        return travelInformation.getTotalTravelTime();
     }
 
     public double getTotalDistance(){
         return travelInformation.getTotalDistance();
     }
+
+    public double getFuelConsumed() { return travelInformation.getFuelConsumed(); }
+
+    public int getAverageSpeed() { return travelInformation.getAverageSpeed(); }
 
     public void accelerate(){
         speed.accelerate();
@@ -54,8 +57,8 @@ public class Travel{
         speed.brake();
     }
 
-    public int getJourneyTime(){
-        return travelInformation.getTotalTravelTime();
+    public String getSpeedAsString(){
+        return speed.getSpeedAsString();
     }
 
     public void cruiseController(){

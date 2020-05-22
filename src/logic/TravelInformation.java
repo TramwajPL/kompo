@@ -11,7 +11,10 @@ public class TravelInformation {
     private double firstDailyOdometerValue = 0;
     private double secondDailyOdometerValue = 0;
     private int totalTravelTime = 0;
-    private final int minutesInHour = 60;
+    private double singleTravelDistance = 0;
+    private double fuelConsumed = 0;
+
+    public TravelInformation(){}
 
     public double getFirstDailyOdometerValue() {
         return firstDailyOdometerValue;
@@ -29,15 +32,32 @@ public class TravelInformation {
         this.secondDailyOdometerValue = secondDailyOdometerValue;
     }
 
-    public TravelInformation(){}
+    public void consumeFuel(){
+        final double fuelConsumptionPer100Km = 8;
+        fuelConsumed = singleTravelDistance / fuelConsumptionPer100Km;
+    }
 
-    public void calculateTotalDistance(int speed){
-        double distance = speed * 1000;
-        distance /= 3600;
+
+    public double getFuelConsumed(){
+        return fuelConsumed;
+    }
+
+    public double convertToKmPerHour(int meters){
+        int metersInKilometer = 1000;
+        int secondsInHour = 3600;
+        double distance = meters * metersInKilometer;
+        distance /= secondsInHour;
+        return distance;
+    }
+
+    public void updateDistance(int speed){
+        double distance = convertToKmPerHour(speed);
         totalDistance += distance;
         firstDailyOdometerValue += distance;
         secondDailyOdometerValue += distance;
+        singleTravelDistance += distance;
         speeds.add(speed);
+        consumeFuel();
         addSecondToTotalTime();
     }
 
@@ -46,6 +66,7 @@ public class TravelInformation {
     }
 
     public int getTotalTravelTime() {
+        int minutesInHour = 60;
         return totalTravelTime/minutesInHour;
     }
 

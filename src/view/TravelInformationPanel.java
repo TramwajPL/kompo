@@ -21,7 +21,7 @@ public class TravelInformationPanel {
     private Label firstDailyOdometerLabel = new Label("0");
     private Label secondDailyOdometerLabel = new Label("0");
     private Label journeyTimeLabel = new Label("0");
-    private Label averageCombustionLabel = new Label("0");
+    private Label fuelConsumedLabel = new Label("0");
     private Label averageSpeedLabel = new Label("0");
 
     private Group group = new Group();
@@ -34,23 +34,45 @@ public class TravelInformationPanel {
         setSecondDailyOdometerLabel();
         setJourneyTimeLabel();
         setAverageSpeedLabel();
+        setFuelConsumedLabel();
         //setAverageCombustionLabel();
     }
 
 
-    private void setAverageSpeedLabel(){
-        averageSpeedLabel.setLayoutX(-100);
-        averageSpeedLabel.setLayoutY(30);
-        averageSpeedLabel.setFont(new Font("Verdana", 40));
-        averageSpeedLabel.setTextFill(Color.RED);
-
+    Group getGroup(){
+        group.getChildren().add(speedLabel);
+        group.getChildren().add(totalOdometerLabel);
+        group.getChildren().add(firstDailyOdometerLabel);
+        group.getChildren().add(secondDailyOdometerLabel);
+        group.getChildren().add(journeyTimeLabel);
+        group.getChildren().add(fuelConsumedLabel);
+        group.getChildren().add(averageSpeedLabel);
+        BorderPane.setAlignment(group, Pos.CENTER);
+        group.setNodeOrientation(RIGHT_TO_LEFT);
+        return group;
     }
 
+
+    private void setFuelConsumedLabel(){
+        fuelConsumedLabel.setLayoutX(5);
+        fuelConsumedLabel.setLayoutY(0);
+        fuelConsumedLabel.setFont(new Font("Verdana", 25));
+        fuelConsumedLabel.setTextFill(Color.YELLOW);
+    }
+
+    private void setAverageSpeedLabel(){
+        averageSpeedLabel.setLayoutX(5);
+        averageSpeedLabel.setLayoutY(25);
+        averageSpeedLabel.setFont(new Font("Verdana", 25));
+        averageSpeedLabel.setTextFill(Color.RED);
+    }
+
+
     private void setJourneyTimeLabel(){
-        journeyTimeLabel.setLayoutX(-100);
-        journeyTimeLabel.setLayoutY(30);
-        journeyTimeLabel.setFont(new Font("Verdana", 40));
-        journeyTimeLabel.setTextFill(Color.RED);
+        journeyTimeLabel.setLayoutX(5);
+        journeyTimeLabel.setLayoutY(50);
+        journeyTimeLabel.setFont(new Font("Verdana", 25));
+        journeyTimeLabel.setTextFill(Color.GREEN);
     }
 
     private void setSpeedLabel() {
@@ -61,8 +83,8 @@ public class TravelInformationPanel {
     }
 
     private void setTotalOdometerLabel(){
-        totalOdometerLabel.setLayoutX(20);
-        totalOdometerLabel.setLayoutY(30);
+        totalOdometerLabel.setLayoutX(160);
+        totalOdometerLabel.setLayoutY(-40);
         totalOdometerLabel.setFont(new Font("Verdana", 40));
         totalOdometerLabel.setTextFill(Color.WHITE);
     }
@@ -98,50 +120,41 @@ public class TravelInformationPanel {
     }
 
     void updateTotalOdometerLabel(){
-        double temp1 = (int)travel.getTotalDistance();
-        temp1 /= 100;
-        double temp2 = (int)temp1;
-        temp2 /= 10;
-        totalOdometerLabel.setText(String.valueOf(temp2));
+        double temp = parseNumber(travel.getTotalDistance());
+        totalOdometerLabel.setText(String.valueOf(temp));
     }
 
     void updateFirstDailyOdometerLabel(){
-        double temp1 = (int)travel.getFirstOdometerValue();
+        double temp = parseNumber(travel.getFirstOdometerValue());
+        firstDailyOdometerLabel.setText(String.valueOf(temp));
+    }
+
+    private double parseNumber(double number){
+        double temp1 = (int)number;
         temp1 /= 100;
         double temp2 = (int)temp1;
         temp2 /= 10;
-        firstDailyOdometerLabel.setText(String.valueOf(temp2));
+        return temp2;
     }
-
 
     void updateSecondDailyOdometerLabel(){
-        double temp1 = (int)travel.getSecondOdometerValue();
-        temp1 /= 100;
-        double temp2 = (int)temp1;
-        temp2 /= 10;
-        secondDailyOdometerLabel.setText(String.valueOf(temp2));
+        double temp = parseNumber(travel.getSecondOdometerValue());
+        secondDailyOdometerLabel.setText(String.valueOf(temp));
     }
 
 
-    void updateJourneyTime(){
-        journeyTimeLabel.setText(String.valueOf(travel.getJourneyTime()));
+    void updateJourneyTimeLabel(){
+        journeyTimeLabel.setText(String.valueOf(travel.getJourneyTime()) + "min");
+    }
+
+    void updateFuelConsumedLabel(){
+        double temp = parseNumber(travel.getFuelConsumed());
+        fuelConsumedLabel.setText(String.valueOf(temp) + "l");
     }
 
     void updateAverageSpeed(){
-        //averageSpeedLabel.setText(String.valueOf(travel.getAverageSpeed));
+        averageSpeedLabel.setText(String.valueOf(travel.getAverageSpeed()) + "km/h");
     }
-
-    Group getGroup(){
-        group.getChildren().add(speedLabel);
-        group.getChildren().add(totalOdometerLabel);
-        group.getChildren().add(firstDailyOdometerLabel);
-        group.getChildren().add(secondDailyOdometerLabel);
-        group.getChildren().add(journeyTimeLabel);
-        BorderPane.setAlignment(group, Pos.CENTER);
-        group.setNodeOrientation(RIGHT_TO_LEFT);
-        return group;
-    }
-
 
 
 }

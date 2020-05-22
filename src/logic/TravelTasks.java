@@ -29,7 +29,7 @@ public class TravelTasks extends TimerTask {
 
     private void averageSpeedSampler(){
         try {
-            distance.calculateTotalDistance(speed.getSpeedAsInt());
+            distance.updateDistance(speed.getSpeedAsInt());
         }
         catch(Exception e){
             e.printStackTrace();
