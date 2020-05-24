@@ -2,12 +2,18 @@ package logic;
 
 import java.util.Timer;
 
+/**
+ * Klasa s³u¿¹ca do oblczania przebytej drogi
+ */
 public class Travel{
 
     private Speed speed = new Speed();
     private TravelInformation travelInformation = new TravelInformation();
     private boolean isCruiseControlActive = false;
 
+    /**
+     * Bezparametrowy konstruktor klasy Travel
+     */
     public Travel() {
         TravelTasks travelTasks = new TravelTasks(speed, travelInformation);
         Timer timer = new Timer(true);
@@ -21,46 +27,87 @@ public class Travel{
         }));
     }
 
+    /**
+     * 
+     */
     public void resetFirstOdometer(){
         travelInformation.setFirstDailyOdometerValue(0);
     }
 
+    /**
+     * 
+     */
     public void resetSecondOdometer(){
         travelInformation.setSecondDailyOdometerValue(0);
     }
 
+    /**
+     * 
+     */
     public double getFirstOdometerValue(){
         return travelInformation.getFirstDailyOdometerValue();
     }
 
+    /**
+     * 
+     */
     public  double getSecondOdometerValue(){
         return travelInformation.getSecondDailyOdometerValue();
     }
 
+    /**
+     * Funkcja zwracaj¹ca czas podró¿y
+     * @return
+     */
     public int getJourneyTime(){
         return travelInformation.getTotalTravelTime();
     }
 
+    /**
+     * Funkcja zwracaj¹ca ca³kowity pokonany dystans
+     * @return
+     */
     public double getTotalDistance(){
         return travelInformation.getTotalDistance();
     }
 
+    /**
+     * Funkcja zwracaj¹ca spalone paliwo
+     * @return
+     */
     public double getFuelConsumed() { return travelInformation.getFuelConsumed(); }
 
+    /**
+     * Funkcja zwracaj¹ca œredni¹ szybkoœæ
+     * @return
+     */
     public int getAverageSpeed() { return travelInformation.getAverageSpeed(); }
 
+    /**
+     * Funkcja s³u¿¹ca przyspieszaniu
+     */
     public void accelerate(){
         speed.accelerate();
     }
 
+    /**
+     * Funkcja s³u¿¹ca hamowaniu
+     */
     public void brake(){
         speed.brake();
     }
 
+    /**
+     * Funkcja parsuj¹ca szybkoœæ na string
+     * @return
+     */
     public String getSpeedAsString(){
         return speed.getSpeedAsString();
     }
 
+    /**
+     * 
+     */
     public void cruiseController(){
         if(!isCruiseControlActive) {
             speed.setAirResistance(0.0);

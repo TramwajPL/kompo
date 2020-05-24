@@ -3,6 +3,10 @@ package logic;
 import javafx.application.Application;
 import view.Dashboard;
 
+/**
+ * Klasa przyjmuj¹ca argumenty i na ich podstawie w³¹czaj¹ca
+ * odpowiedni interfejs u¿ytkownika
+ */
 public class Init {
 
     Init(String[] args){

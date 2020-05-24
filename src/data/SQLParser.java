@@ -10,7 +10,18 @@ import java.text.SimpleDateFormat;
 import logic.Speed;
 import logic.TooLargeIndexException;
 
+/**
+ *  Klasa zapisuj¹ca i odczytuj¹ca dane 
+ *  z bazy SQL.
+ */
 public class SQLParser {
+	/**
+	 * Funkcja spisuj¹ca z bazy danych na podstawie parametru 
+	 * szybkoœci znajduj¹ce siê w tabeli do listy speeds i 
+	 * zwracaj¹ca ta listê
+	 * @param sql
+	 * @return speeds
+	 */
 	public SpeedContainer convert(SQLConnection sql) {
 	     
 		Statement statement;
@@ -18,7 +29,7 @@ public class SQLParser {
 		SpeedContainer speeds = new SpeedContainer();
 		try {
 			statement = sql.getCon().createStatement();
-			result = statement.executeQuery("select *from wydarzenia");
+			result = statement.executeQuery("select *from szybkosci");
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -40,6 +51,12 @@ public class SQLParser {
 		return speeds;
     }
 	
+	/**
+	 * Funkcja zapisuj¹ca szybkoœci z listy do tabeli 
+	 * znajduj¹cej siê w bazie danych sql.
+	 * @param speeds
+	 * @param sql
+	 */
 	public void convert(SpeedContainer speeds, SQLConnection sql) {
 	     
 		String query;

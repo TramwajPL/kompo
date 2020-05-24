@@ -2,48 +2,21 @@ package data;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import com.thoughtworks.xstream.XStream;
 
 public class XMLParser {
 	public void convert(SpeedContainer speeds) {
-	     
-        JAXBContext jaxbContext;
-        Marshaller jaxbMarshaller;
-		try {
-			jaxbContext = JAXBContext.newInstance(SpeedContainer.class);
-			jaxbMarshaller = jaxbContext.createMarshaller();
-	        
-	        FileWriter writer = new FileWriter("book.xml");
-	        jaxbMarshaller.marshal(speeds, writer);
-		} catch (JAXBException | IOException e) {
-			e.printStackTrace();
-		}        
+		XStream xstream = new XStream();
+		xstream.alias("person", SpeedContainer.class);
+		String xml = xstream.toXML(speeds);      
     }
 	
 	public SpeedContainer convert() {
 		SpeedContainer speeds = new SpeedContainer();
-		File file = null;
-        JAXBContext jaxbContext;
-        file = new File("events.xml");
-        if(file.exists()==false) {
-        	System.err.println("Plik nie istnieje");
-        	return speeds;
-        }
-		try {
-	        file = new File("events.xml");
-
-			jaxbContext = JAXBContext.newInstance(SpeedContainer.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		    speeds = (SpeedContainer) jaxbUnmarshaller.unmarshal(file);
-		
-		} catch (JAXBException e) {
-			System.err.println("Problem z konwertowaniem"); 
-		}		
+		XStream xstream = new XStream();
+		File plik = new File("../xml.xml");
+		speeds = (SpeedContainer)xstream.fromXML(plik);	
 		return speeds;
     }
 }

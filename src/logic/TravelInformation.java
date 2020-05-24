@@ -2,6 +2,9 @@ package logic;
 
 import java.util.ArrayList;
 
+/**
+ * Klasa przechowuj¹ca informacje na temat danej trasy
+ */
 public class TravelInformation {
 
     private ArrayList<Integer> speeds = new ArrayList<>();

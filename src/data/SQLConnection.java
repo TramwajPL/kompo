@@ -4,13 +4,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ *  Odpowiada za komunikacje
+ *  z baza SQL.
+ */
 public class SQLConnection {
 	private Connection connection;
 	
+	/**
+	 *  Zwraca aktualne polaczenie z baza SQL.
+	 *  
+	 *  @return aktualne polaczanie z baza SQL.
+	 */
 	public Connection getCon() {
 		return connection;
 	}
 	
+	/**
+	 * Ustanawia polaczenie z baza SQL
+	 */
 	public void ConnectToDatabase() {
 		
 		try {
@@ -29,6 +41,9 @@ public class SQLConnection {
 		
 	}
 	
+	/**
+	 * Odpowiada za rozlaczenie z baza SQL
+	 */
 	public void DisconnectDatabase() {
 		try {
 			connection.close();
