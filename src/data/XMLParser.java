@@ -12,15 +12,14 @@ import logic.TravelInformation;
  *danych z plików xml.
  */
 public class XMLParser {
-	private TravelInformation info = new TravelInformation();
 	
 	public void convert(TravelInformation info) {
 		XStream xstream = new XStream();
-		xstream.alias("person", SpeedContainer.class);
+		xstream.alias("info", TravelInformation.class);
 		String xml = xstream.toXML(info);      
     }
 	
-	public TravelInformation convert() {
+	public TravelInformation convertFromXml(TravelInformation info) {
 		SpeedContainer speeds = new SpeedContainer();
 		XStream xstream = new XStream();
 		File plik = new File("../xml.xml");

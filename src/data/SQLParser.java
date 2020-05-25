@@ -76,24 +76,20 @@ public class SQLParser {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		for(int i=0; i<6; i++) {
-			
-			 query = "INSERT INTO deska" +
-		              " (szybkoœæ, przyspieszenie, opórPowietrza)" +
-		              " VALUES (?, ?, ?)";
-			try {
-				st = sql.getCon().prepareStatement(query);
-				st.setDouble(1, info.getTotalDistance());
-				st.setDouble(1, info.getFirstDailyOdometerValue());
-				st.setDouble(1, info.getSecondDailyOdometerValue());
-				st.setInt(1, info.getTotalTravelTime());
-				st.setDouble(1, info.getSingleTravelDistance());
-				st.setDouble(1, info.getFuelConsumed());
-			    st.executeUpdate();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+		query = "INSERT INTO deska" +
+		              " (totalDistance, firstDailyOdometerValue, secondDailyOdometerValue, totalTravelTime, singleTravelDistance, fuelConsumed)" +
+		              " VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			st = sql.getCon().prepareStatement(query);
+			st.setDouble(1, info.getTotalDistance());
+			st.setDouble(2, info.getFirstDailyOdometerValue());
+			st.setDouble(3, info.getSecondDailyOdometerValue());
+			st.setInt(4, info.getTotalTravelTime());
+			st.setDouble(5, info.getSingleTravelDistance());
+			st.setDouble(6, info.getFuelConsumed());
+			st.executeUpdate();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
     }
 }

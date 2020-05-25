@@ -11,6 +11,7 @@ import data.XMLParser;
  */
 public class Travel{
 
+	private SQLConnection sql;
     private Speed speed = new Speed();
     private TravelInformation travelInformation = new TravelInformation();
     private boolean isCruiseControlActive = false;
@@ -19,10 +20,11 @@ public class Travel{
      * Bezparametrowy konstruktor klasy Travel
      */
     public Travel() {
-    	SQLConnection sql = new SQLConnection();
+    	sql = new SQLConnection();
+    	sql.ConnectToDatabase();
         SQLParser sqlParser = new SQLParser();
         XMLParser xmlParser = new XMLParser();
-        //sqlParser.convertFromSQL(travelInformation, sql);
+        sqlParser.convertFromSQL(travelInformation, sql);
         TravelTasks travelTasks = new TravelTasks(speed, travelInformation);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(travelTasks, 0, 1000);

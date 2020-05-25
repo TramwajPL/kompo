@@ -3,7 +3,7 @@ package data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 /**
  *  Odpowiada za komunikacje
  *  z baza SQL.
@@ -23,17 +23,18 @@ public class SQLConnection {
 	
 	/**
 	 * Ustanawia polaczenie z baza SQL
+	 * @throws ClassNotFoundException 
 	 */
-	public void ConnectToDatabase() {
+	public void ConnectToDatabase(){
 		
 		try {
 			String host = "localhost";
-			dbName = "deska_rozdzielcza";
-			String url = String.format("jdbc:sqlserver://%s;databaseName=%s", host, dbName);
+			String dbname = "deska_rozdzielcza";
+			String url = String.format("jdbc:sqlserver://%s;databaseName=%s", host, dbname);
 			String user = "sa";
 			String pass = "123456789";
 			String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-			Class.forName(driver).newInstance();			
+			Class.forName(driver).newInstance(); 			
 			connection = DriverManager.getConnection(url, user, pass);
 			
 		} catch (Exception ex) {
