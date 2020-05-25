@@ -2,31 +2,59 @@ package view;
 
 import data.SpeedContainer;
 import logic.Speed;
+import logic.TravelInformation;
 
+/**
+ * Klasa odpowiadaj¹ca za przekazywanie odpowiednich szybkoœci do interfejsu konsolowego
+ * @author wiktg
+ *
+ */
 public class ConsoleInterfaceController {
-	private SpeedContainer speeds;
+	private TravelInformation info;
 	
+	/**
+	 * Bezparametrowy konstruktor klasy ConsoleInterfaceController
+	 */
 	public ConsoleInterfaceController() {
-		this.speeds = new SpeedContainer();
+		this.info = new TravelInformation();
 	}
 	
-	public void createSpeed(double speed, double acceleration, double airResistance) {
-		Speed speede = new Speed(speed, acceleration, airResistance);
-		speeds.add(speede);
+	/**
+	 * Funkcja tworz¹ca szybkoœæ na podstawie podanych parametrów
+	 * @param speed
+	 * @param acceleration
+	 * @param airResistance
+	 */
+	public void createTravelInformation(double totalDistance, double firstDailyOdometerValue, double secondDailyOdometerValue
+			, int totalTravelTime, double singleTravelDistance, double fuelConsumed) {
+		info.setTotalDistance(totalDistance);
+		info.setFirstDailyOdometerValue(firstDailyOdometerValue);
+		info.setSecondDailyOdometerValue(secondDailyOdometerValue);
+		info.setTotalTravelTime(totalTravelTime);
+		info.setSingleTravelDistance(singleTravelDistance);
+		info.setFuelConsumed(fuelConsumed);
 	}
 	
-	public String showSpeeds() {
+	/**
+	 * Funkcja wypisuj¹ca wszystkie osi¹gniête szybkoœci
+	 * @return
+	 */
+	public String showTravelInformation() {
 		
-		return speeds.toString();
+		return info.toString();
 	}
 	
-	public void deleteSpeed(int index) {
-		if(index<speeds.size() && index>-1) {
-    		speeds.remove(index);
-		}
-		else {
-        	System.out.println("Podano nieprawid³owe dane");
-    	}
+	/**
+	 * Funkcja usuwuj¹ca szybkoœæ na podstawie indeksu
+	 * @param index
+	 */
+	public void deleteInformation() {
+		info.setTotalDistance(0);
+		info.setFirstDailyOdometerValue(0);
+		info.setSecondDailyOdometerValue(0);
+		info.setTotalTravelTime(0);
+		info.setSingleTravelDistance(0);
+		info.setFuelConsumed(0);
 	}
 
 }

@@ -9,12 +9,14 @@ import java.text.SimpleDateFormat;
 
 import logic.Speed;
 import logic.TooLargeIndexException;
+import logic.TravelInformation;
 
 /**
  *  Klasa zapisuj¹ca i odczytuj¹ca dane 
  *  z bazy SQL.
  */
 public class SQLParser {
+	private TravelInformation info = new TravelInformation();
 	/**
 	 * Funkcja spisuj¹ca z bazy danych na podstawie parametru 
 	 * szybkoœci znajduj¹ce siê w tabeli do listy speeds i 
@@ -22,11 +24,10 @@ public class SQLParser {
 	 * @param sql
 	 * @return speeds
 	 */
-	public SpeedContainer convert(SQLConnection sql) {
+	public TravelInformation convert(SQLConnection sql) {
 	     
 		Statement statement;
 		ResultSet result = null;
-		SpeedContainer speeds = new SpeedContainer();
 		try {
 			statement = sql.getCon().createStatement();
 			result = statement.executeQuery("select *from szybkosci");
@@ -38,17 +39,24 @@ public class SQLParser {
 		
 		try {
 			while (result.next()) {
-				double a = result.getDouble("szybkoœæ");
-				double b = result.getDouble("przyspieszenie");
-				double c = result.getDouble("opórPowietrza");
-				Speed speed = new Speed(a,b,c);
-				speeds.add(speed);
+				double a = result.getDouble("totalDistance");
+				double b = result.getDouble("firstDailyOdometerValue");
+				double c = result.getDouble("secondDailyOdometerValue");
+				int d = result.getInt("totalTravelTime");
+				double e = result.getDouble("singleTravelDistance");
+				double f = result.getDouble("fuelConsumed");
+				info.setFirstDailyOdometerValue(b);
+				info.setSecondDailyOdometerValue(c);
+				info.setTotalDistance(a);
+				info.setTotalTravelTime(d);
+				info.setSingleTravelDistance(e);
+				info.setFuelConsumed(f);
 			}
 		} catch (SQLException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		} 
-		return speeds;
+		return info;
     }
 	
 	/**
@@ -57,7 +65,7 @@ public class SQLParser {
 	 * @param speeds
 	 * @param sql
 	 */
-	public void convert(SpeedContainer speeds, SQLConnection sql) {
+	public void convert(TravelInformation info, SQLConnection sql) {
 	     
 		String query;
 		PreparedStatement st;
@@ -70,21 +78,21 @@ public class SQLParser {
 			e1.printStackTrace();
 		}
 		
-		for(int i=0; i<speeds.size(); i++) {
+		for(int i=0; i<6; i++) {
 			
 			 query = "INSERT INTO szybkoœci" +
 		              " (szybkoœæ, przyspieszenie, opórPowietrza)" +
 		              " VALUES (?, ?, ?)";
 			try {
 				st = sql.getCon().prepareStatement(query);
-				st.setDouble(1, speeds.get(i).getSpeed());
-				st.setDouble(1, speeds.get(i).getAcceleration());
-				st.setDouble(1, speeds.get(i).getAirResistance());
+				st.setDouble(1, info.getTotalDistance());
+				st.setDouble(1, info.getFirstDailyOdometerValue());
+				st.setDouble(1, info.getSecondDailyOdometerValue());
+				st.setInt(1, info.getTotalTravelTime());
+				st.setDouble(1, info.getSingleTravelDistance());
+				st.setDouble(1, info.getFuelConsumed());
 			    st.executeUpdate();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
-			} catch (TooLargeIndexException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

@@ -2,6 +2,10 @@ package logic;
 
 import java.util.Timer;
 
+import data.SQLConnection;
+import data.SQLParser;
+import data.XMLParser;
+
 /**
  * Klasa s³u¿¹ca do oblczania przebytej drogi
  */
@@ -22,7 +26,11 @@ public class Travel{
         //odpalane na koniec dzialania programu
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
-                //TOooooooooooooooooooo
+            	SQLConnection sql = new SQLConnection();
+                SQLParser parser = new SQLParser();
+                XMLParser parser2 = new XMLParser();
+                parser.convert(travelInformation, sql);
+                parser2.convert(travelInformation);
             }
         }));
     }

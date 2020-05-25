@@ -17,34 +17,88 @@ public class TravelInformation {
     private double singleTravelDistance = 0;
     private double fuelConsumed = 0;
 
+    /**
+     * Bezparametrowy konstruktor klasy TravelInformation
+     */
     public TravelInformation(){}
 
+    /**
+     * 
+     * @return
+     */
     public double getFirstDailyOdometerValue() {
         return firstDailyOdometerValue;
     }
 
+    /**
+     * 
+     * @return
+     */
     public void setFirstDailyOdometerValue(double firstDailyOdometerValue) {
         this.firstDailyOdometerValue = firstDailyOdometerValue;
     }
 
+    public double getSingleTravelDistance() {
+		return singleTravelDistance;
+	}
+
+	public void setSpeeds(ArrayList<Integer> speeds) {
+		this.speeds = speeds;
+	}
+
+	public void setTotalDistance(double totalDistance) {
+		this.totalDistance = totalDistance;
+	}
+
+	public void setTotalTravelTime(int totalTravelTime) {
+		this.totalTravelTime = totalTravelTime;
+	}
+
+	public void setSingleTravelDistance(double singleTravelDistance) {
+		this.singleTravelDistance = singleTravelDistance;
+	}
+
+	public void setFuelConsumed(double fuelConsumed) {
+		this.fuelConsumed = fuelConsumed;
+	}
+
+	/**
+     * 
+     * @return
+     */
     public double getSecondDailyOdometerValue() {
         return secondDailyOdometerValue;
     }
 
+    /**
+     * 
+     * @return
+     */
     public void setSecondDailyOdometerValue(double secondDailyOdometerValue) {
         this.secondDailyOdometerValue = secondDailyOdometerValue;
     }
 
+    /**
+     * Funkcja obliczaj¹ca zuzycie paliwa na 100 km
+     */
     public void consumeFuel(){
         final double fuelConsumptionPer100Km = 8;
         fuelConsumed = singleTravelDistance / fuelConsumptionPer100Km;
     }
 
-
+    /**
+     * Funkcja zwracaj¹ca iloœæ zu¿ytego paliwa
+     * @return fuelConsumed
+     */
     public double getFuelConsumed(){
         return fuelConsumed;
     }
 
+    /**
+     * Funkcja przeliczaj¹ca szybkoœæ na km/h
+     * @param meters
+     * @return distance
+     */
     public double convertToKmPerHour(int meters){
         int metersInKilometer = 1000;
         int secondsInHour = 3600;
@@ -53,6 +107,10 @@ public class TravelInformation {
         return distance;
     }
 
+    /**
+     * Funkcja aktualizuj¹ca szybkoœæ na podtsawie podanego parametru
+     * @param speed
+     */
     public void updateDistance(int speed){
         double distance = convertToKmPerHour(speed);
         totalDistance += distance;
@@ -64,15 +122,26 @@ public class TravelInformation {
         addSecondToTotalTime();
     }
 
+    /**
+     * Funkcja dodaj¹ca sekunde do ca³kowitego czasu
+     */
     public void addSecondToTotalTime(){
         totalTravelTime += 1;
     }
 
+    /**
+     * Funkcja zwracaj¹ca ca³kowity czas poœwiêcony na podró¿
+     * @return
+     */
     public int getTotalTravelTime() {
         int minutesInHour = 60;
         return totalTravelTime/minutesInHour;
     }
 
+    /**
+     * Funkcja zwracaj¹ca œredni¹ prêdkoœæ
+     * @return averageSpeed
+     */
     public int getAverageSpeed(){
         int averageSpeed = 0;
         for(int i=0; i<speeds.size(); i++){
@@ -82,10 +151,18 @@ public class TravelInformation {
         return averageSpeed;
     }
 
+    /**
+     * Funkcja zwracaj¹ca ca³kowity pokonany dystans
+     * @return
+     */
     public double getTotalDistance() {
         return totalDistance;
     }
 
+    /**
+     * Funkcja zwracaj¹ca szybkoœæ w formie stringu
+     * @return s
+     */
     public String toStringSpeeds() {
         String s = "";
         for(Integer i: speeds){

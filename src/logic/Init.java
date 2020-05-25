@@ -9,6 +9,11 @@ import view.Dashboard;
  */
 public class Init {
 
+	/**
+	 * Funkcja w³¹czaj¹ca interfejs graficzny dla argumentu GUI
+	 * oraz interfejs konsolowy dla argumentu CON.
+	 * @param args
+	 */
     Init(String[] args){
         if (args[0].equals("GUI")) {
             runGUI();
@@ -18,10 +23,16 @@ public class Init {
         }
     }
 
+    /**
+     * Funkcja w³¹czaj¹ca interfejs graficzny
+     */
     private void runGUI(){
         Application.launch(Dashboard.class);
     }
 
+    /**
+     * Funkcja w³¹czaj¹ca interfejs konsolowy
+     */
     private void runConsole(){
         new ConsoleInterface();
     }
