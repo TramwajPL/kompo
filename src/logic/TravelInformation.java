@@ -17,7 +17,15 @@ public class TravelInformation {
     private double singleTravelDistance = 0;
     private double fuelConsumed = 0;
 
-    /**
+    @Override
+	public String toString() {
+		return "TravelInformation [totalDistance=" + totalDistance + ", firstDailyOdometerValue="
+				+ firstDailyOdometerValue + ", secondDailyOdometerValue=" + secondDailyOdometerValue
+				+ ", totalTravelTime=" + totalTravelTime + ", singleTravelDistance=" + singleTravelDistance
+				+ ", fuelConsumed=" + fuelConsumed + "]";
+	}
+
+	/**
      * Bezparametrowy konstruktor klasy TravelInformation
      */
     public TravelInformation(){}

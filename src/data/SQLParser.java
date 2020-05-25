@@ -24,12 +24,12 @@ public class SQLParser {
 	 * @return speeds
 	 */
 	public TravelInformation convertFromSQL(TravelInformation info, SQLConnection sql) {
-	     
+	    sql.ConnectToDatabase();
 		Statement statement;
 		ResultSet result = null;
 		try {
 			statement = sql.getCon().createStatement();
-			result = statement.executeQuery("select *from szybkosci");
+			result = statement.executeQuery("select *from deska");
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -69,7 +69,7 @@ public class SQLParser {
 		String query;
 		PreparedStatement st;
 		try {
-			query = "DELETE FROM szybkoœci";
+			query = "DELETE FROM deska";
 			st = sql.getCon().prepareStatement(query);
 			st.executeUpdate();
 		} catch (SQLException e1) {
@@ -79,7 +79,7 @@ public class SQLParser {
 		
 		for(int i=0; i<6; i++) {
 			
-			 query = "INSERT INTO szybkoœci" +
+			 query = "INSERT INTO deska" +
 		              " (szybkoœæ, przyspieszenie, opórPowietrza)" +
 		              " VALUES (?, ?, ?)";
 			try {

@@ -13,8 +13,16 @@ public class Speed {
     private double airResistance = 0.6;
     private final double MAX_SPEED_LIMIT = 200.0;
     private final double MIN_SPEED_LIMIT = 0.0;
-    private final double ACC_MULTIPLIER = 0.002;
-    private final double BRAKE_MULTIPLIER = 3.0;
+    private double ACC_MULTIPLIER = 0.002;
+    private double BRAKE_MULTIPLIER = 3.0;
+    
+    public void setBRAKE_MULTIPLIER(double bRAKE_MULTIPLIER) {
+		BRAKE_MULTIPLIER = bRAKE_MULTIPLIER;
+	}
+
+	public void setACC_MULTIPLIER(double aCC_MULTIPLIER) {
+		ACC_MULTIPLIER = aCC_MULTIPLIER;
+	}
 
     /**
      * Bezparametrowy kostruktor klasy Speed
@@ -65,7 +73,11 @@ public class Speed {
         acceleration = (MAX_SPEED_LIMIT - speed) * ACC_MULTIPLIER;
     }
 
-    /**
+    public void setAcceleration(double acceleration) {
+		this.acceleration = acceleration;
+	}
+
+	/**
      * Funkcja odpowiadaj¹ca za przyspieszanie
      */
     public void accelerate() {
@@ -90,7 +102,11 @@ public class Speed {
         speedNoLowerThanZero();
     }
 
-    /**
+    public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+
+	/**
      * Funkcja spradzaj¹ca jak¹ ma aktualn¹ prêdkoœæ pojazd i 
      * ustawiaj¹c¹ j¹ na zero jeœli wed³ug obliczeñ wynikaj¹cych z oporów 
      * powietrza mia³a by byæ rowna zero.

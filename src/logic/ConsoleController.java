@@ -10,13 +10,11 @@ import logic.TravelInformation;
  *
  */
 public class ConsoleController {
-	private TravelInformation info;
 	
 	/**
 	 * Bezparametrowy konstruktor klasy ConsoleInterfaceController
 	 */
 	public ConsoleController() {
-		this.info = new TravelInformation();
 	}
 	
 	/**
@@ -26,7 +24,7 @@ public class ConsoleController {
 	 * @param airResistance
 	 */
 	public void createTravelInformation(double totalDistance, double firstDailyOdometerValue, double secondDailyOdometerValue
-			, int totalTravelTime, double singleTravelDistance, double fuelConsumed) {
+			, int totalTravelTime, double singleTravelDistance, double fuelConsumed, TravelInformation info) {
 		info.setTotalDistance(totalDistance);
 		info.setFirstDailyOdometerValue(firstDailyOdometerValue);
 		info.setSecondDailyOdometerValue(secondDailyOdometerValue);
@@ -39,7 +37,7 @@ public class ConsoleController {
 	 * Funkcja wypisuj¹ca wszystkie osi¹gniête szybkoœci
 	 * @return
 	 */
-	public String showTravelInformation() {
+	public String showTravelInformation(TravelInformation info) {
 		
 		return info.toString();
 	}
@@ -48,7 +46,7 @@ public class ConsoleController {
 	 * Funkcja usuwuj¹ca szybkoœæ na podstawie indeksu
 	 * @param index
 	 */
-	public void deleteInformation() {
+	public void deleteInformation(TravelInformation info) {
 		info.setTotalDistance(0);
 		info.setFirstDailyOdometerValue(0);
 		info.setSecondDailyOdometerValue(0);

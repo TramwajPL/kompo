@@ -20,8 +20,9 @@ public class Travel{
      */
     public Travel() {
     	SQLConnection sql = new SQLConnection();
-        SQLParser parser = new SQLParser();
-        XMLParser parser2 = new XMLParser();
+        SQLParser sqlParser = new SQLParser();
+        XMLParser xmlParser = new XMLParser();
+        //sqlParser.convertFromSQL(travelInformation, sql);
         TravelTasks travelTasks = new TravelTasks(speed, travelInformation);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(travelTasks, 0, 1000);
@@ -29,13 +30,29 @@ public class Travel{
         //odpalane na koniec dzialania programu
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
-                parser.convert(travelInformation, sql);
-                parser2.convert(travelInformation);
+                sqlParser.convert(travelInformation, sql);
+                xmlParser.convert(travelInformation);
             }
         }));
     }
 
-    /**
+    public Speed getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(Double speed) {
+		this.speed.setSpeed(speed);
+	}
+
+	public TravelInformation getTravelInformation() {
+		return travelInformation;
+	}
+
+	public void setTravelInformation(TravelInformation travelInformation) {
+		this.travelInformation = travelInformation;
+	}
+
+	/**
      * 
      */
     public void resetFirstOdometer(){

@@ -34,7 +34,12 @@ public class Init {
      * Funkcja w³¹czaj¹ca interfejs konsolowy
      */
     private void runConsole(){
-        new ConsoleInterface();
+        try {
+			new ConsoleInterface();
+		} catch (ChoiceNotAvailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }
