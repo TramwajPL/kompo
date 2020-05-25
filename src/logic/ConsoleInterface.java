@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import view.ConsoleInterfaceController;
-
 /**
  * Klasa S³u¿¹ca do obs³ugi interfejsu konsoli przez u¿ytkownika
  */
@@ -14,14 +12,14 @@ public class ConsoleInterface {
     private Travel travel = new Travel();
     private String choice = null;
 	private BufferedReader reader;
-	private ConsoleInterfaceController controller;
+	private ConsoleController controller;
 	
 	/**
 	 * Bezparametrowy konstruktor z pêtl¹ która koñczy dzia³anie, jeœli u¿ytkownik wybierze jedn¹ z opcji,
 	 * pozwalaj¹ca na dodanie szybkoœci i usuniecie jej
 	 */
     ConsoleInterface(){
-    	this.controller = new ConsoleInterfaceController();
+    	this.controller = new ConsoleController();
     	this.reader = new BufferedReader(new InputStreamReader(System.in));
         run();
         while (choice.compareTo("0") != 0) {

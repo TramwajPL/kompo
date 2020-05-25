@@ -10,6 +10,7 @@ import java.sql.SQLException;
  */
 public class SQLConnection {
 	private Connection connection;
+	private String dbName;
 	
 	/**
 	 *  Zwraca aktualne polaczenie z baza SQL.
@@ -27,8 +28,8 @@ public class SQLConnection {
 		
 		try {
 			String host = "localhost";
-			String dbname = "kalendarz";
-			String url = String.format("jdbc:sqlserver://%s;databaseName=%s", host, dbname);
+			dbName = "deska_rozdzielcza";
+			String url = String.format("jdbc:sqlserver://%s;databaseName=%s", host, dbName);
 			String user = "sa";
 			String pass = "123456789";
 			String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -38,9 +39,16 @@ public class SQLConnection {
 		} catch (Exception ex) {
 			System.err.println("Blad polaczenia z SQL");
 		}
-		
 	}
 	
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
+	}
+
 	/**
 	 * Odpowiada za rozlaczenie z baza SQL
 	 */

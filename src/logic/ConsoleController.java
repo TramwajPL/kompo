@@ -1,4 +1,4 @@
-package view;
+package logic;
 
 import data.SpeedContainer;
 import logic.Speed;
@@ -9,13 +9,13 @@ import logic.TravelInformation;
  * @author wiktg
  *
  */
-public class ConsoleInterfaceController {
+public class ConsoleController {
 	private TravelInformation info;
 	
 	/**
 	 * Bezparametrowy konstruktor klasy ConsoleInterfaceController
 	 */
-	public ConsoleInterfaceController() {
+	public ConsoleController() {
 		this.info = new TravelInformation();
 	}
 	

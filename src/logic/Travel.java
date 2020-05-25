@@ -19,6 +19,9 @@ public class Travel{
      * Bezparametrowy konstruktor klasy Travel
      */
     public Travel() {
+    	SQLConnection sql = new SQLConnection();
+        SQLParser parser = new SQLParser();
+        XMLParser parser2 = new XMLParser();
         TravelTasks travelTasks = new TravelTasks(speed, travelInformation);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(travelTasks, 0, 1000);
@@ -26,9 +29,6 @@ public class Travel{
         //odpalane na koniec dzialania programu
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
-            	SQLConnection sql = new SQLConnection();
-                SQLParser parser = new SQLParser();
-                XMLParser parser2 = new XMLParser();
                 parser.convert(travelInformation, sql);
                 parser2.convert(travelInformation);
             }

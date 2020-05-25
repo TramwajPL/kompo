@@ -16,7 +16,6 @@ import logic.TravelInformation;
  *  z bazy SQL.
  */
 public class SQLParser {
-	private TravelInformation info = new TravelInformation();
 	/**
 	 * Funkcja spisuj¹ca z bazy danych na podstawie parametru 
 	 * szybkoœci znajduj¹ce siê w tabeli do listy speeds i 
@@ -24,7 +23,7 @@ public class SQLParser {
 	 * @param sql
 	 * @return speeds
 	 */
-	public TravelInformation convert(SQLConnection sql) {
+	public TravelInformation convertFromSQL(TravelInformation info, SQLConnection sql) {
 	     
 		Statement statement;
 		ResultSet result = null;
