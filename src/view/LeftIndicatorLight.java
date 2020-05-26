@@ -10,12 +10,23 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
-public class LeftIndicatorLight{
+/**
+ * Klasa, której grupa reprezentuje lewy kierunkowskaz.
+ */
 
+public class LeftIndicatorLight{
+    /**
+     * group stanowi grupę wszystkich obiektów reprezentujących graficznie kontrolkę.
+     * polygon to obiekt klasy Polygon reprezentujący grot strzałki kierunkowskazu.
+     * line reprezentuje trzon strzałki kierunkowskazu.
+     */
+
+    private Group group = new Group();
     private Polygon polygon = new Polygon();
     private Line line = new Line();
-    private Group group = new Group();
-
+    /**
+     * W konstruktorze następuje dodanie obiektów do grupy oraz wzbogacenie o efekt zanikania.
+     */
     LeftIndicatorLight() {
         createPolygon();
         createLine();
@@ -31,6 +42,9 @@ public class LeftIndicatorLight{
         fadeTransition.play();
     }
 
+    /**
+     * Tworzy wielokąt wchodzący w skład ikonki kierunkowskazu.
+     */
     private void createPolygon(){
         Double[] points =
                 {0.0, 50.0,
@@ -40,6 +54,9 @@ public class LeftIndicatorLight{
         polygon.setFill(Color.BLACK);
     }
 
+    /**
+     * Tworzy linię wchodzącą w skład ikonki kierunkowskazu.
+     */
     private void createLine(){
         line.setStartX(100);
         line.setStartY(50);
@@ -48,16 +65,25 @@ public class LeftIndicatorLight{
         line.setStrokeWidth(10);
         line.setStroke(Color.BLACK);
     }
-
+    /**
+     * @return zwraca grupę reprezentującą kontrolkę.
+     */
     public Group getGroup(){
         return group;
     }
-
+    /**
+     * Metoda odpowiadająca za pojawianie się kontrolki. W momencie jej wywołania wszystkie obiekty wchodzące w skład
+     * kontrolki uzyskują barwę pomarańczową, co jest równoznaczne z uaktywnieniem kontrolki.
+     */
     public void turnOn(){
         line.setStroke(Color.ORANGE);
         polygon.setFill(Color.ORANGE);
     }
 
+    /**
+     * Metoda odpowiadająca za znikanie kontrolki. W momencie jej wywołania zmienia wszystkie obiekty wchodzące w skład
+     * kontrolki tak, aby ich kolor stał się czarny, przez co następuje dopasowanie się do sceny.
+     */
     public void turnOff(){
         line.setStroke(Color.BLACK);
         polygon.setFill(Color.BLACK);

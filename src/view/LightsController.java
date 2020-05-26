@@ -4,6 +4,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Klasa stanowiąca kontroler świateł mijania, drogowych, pozycyjnych, przeciwmieglnych tylnych i przednich.
+ */
+
 public class LightsController {
 
     private Group lightsGroup = new Group();
@@ -12,12 +16,23 @@ public class LightsController {
     private SideLight sdl = new SideLight();
     private RearFogLight rfl = new RearFogLight();
     private FrontFogLight ffl = new FrontFogLight();
+
+    /**
+     * isHblActive - atrybut określający aktywność świateł drogowych.
+     * isDblActive - atrybut określający aktywność świateł mijania.
+     * isSdlActive - atrybut określający aktywność świateł pozycyjnych.
+     * isRflActive - atrybut określający aktywność świateł przeciwmgielnych tylnych.
+     * isFflActive - atrybut określający aktywność świateł przeciwmgielnych przednich.
+      */
+
     private boolean isHblActive = false;
     private boolean isDblActive = false;
     private boolean isSdlActive = false;
     private boolean isRflActive = false;
     private boolean isFflActive = false;
-
+    /**
+     * W konstruktorze następuje dodanie obiektów do grupy oraz przeskalowanie i dodanie niewielkiego marginesu.
+     */
     LightsController() {
         double scale = 0.5;
         BorderPane.setMargin(lightsGroup, new Insets(5));
@@ -28,7 +43,14 @@ public class LightsController {
         lightsGroup.getChildren().add(ffl.getGroup());
         lightsGroup.setScaleX(scale);
         lightsGroup.setScaleY(scale);
+
     }
+
+    /**
+     * Metoda określają zachowanie świateł drogowych. W momencie włączenia ich przez użytkownika następuje równoczesne
+     * sprawdzenie, czy światła mijania i światła pozycyjne są włączone i w przypadku, gdy są, następuje ich
+     * wyłączenie.
+     */
 
     public void hblController(){
         if(isDblActive || isSdlActive){
@@ -47,6 +69,11 @@ public class LightsController {
         }
     }
 
+    /**
+     * Metoda określają zachowanie świateł mijania. W momencie włączenia ich przez użytkownika następuje równoczesne
+     * sprawdzenie, czy światła drogowe i światła pozycyjne są włączone i w przypadku, gdy są, następuje ich
+     * wyłączenie.
+     */
     public void dblController(){
         if(isHblActive || isSdlActive){
             isHblActive = false;
@@ -64,6 +91,11 @@ public class LightsController {
         }
     }
 
+    /**
+     * Metoda określają zachowanie świateł pozycyjnych. W momencie włączenia ich przez użytkownika następuje równoczesne
+     * sprawdzenie, czy światła mijania i światła drogowe są włączone i w przypadku, gdy są, następuje ich
+     * wyłączenie.
+     */
     public void sdlController(){
         if(isHblActive || isDblActive){
             isHblActive = false;
@@ -81,6 +113,9 @@ public class LightsController {
         }
     }
 
+    /**
+     * Metoda odpowiedzialna za włączanie i wyłączanie świateł przeciwmgielnych przednich.
+     */
     public void fflController(){
         if(!isFflActive) {
             ffl.turnOn();
@@ -92,6 +127,9 @@ public class LightsController {
         }
     }
 
+    /**
+     * Metoda odpowiedzialna za włączanie i wyłączanie świateł przeciwmgielnych tylnych.
+     */
     public void rflController(){
         if(!isRflActive) {
             rfl.turnOn();
@@ -103,6 +141,9 @@ public class LightsController {
         }
     }
 
+    /**
+     * @return zwraca wszystkie kontrolki wszystkich pięciu świateł jako grupę.
+     */
     public Group getLightsGroup(){
         return lightsGroup;
     }

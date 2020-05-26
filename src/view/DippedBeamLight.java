@@ -8,19 +8,36 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa reprezentująca światła mijania.
+ */
+
 public class DippedBeamLight implements Light {
+
+    /**
+     * group stanowi grupę wszystkich obiektów reprezentujących graficznie kontrolkę.
+     * lines zawiera wszystkie linie przedstawiające światła.
+     * curves zawiera zakrzywione linie przedstawiające reflektor.
+     */
 
     private Group group = new Group();
     private List<Line> lines = new ArrayList<>();
     private List<CubicCurve> curves = new ArrayList<>();
 
+    /**
+     * W konstruktorze następuje dodanie obiektów do grupy oraz odpowiednie przesunięcie na osi x.
+     */
 
     DippedBeamLight(){
         group.getChildren().add(getHeadlight());
         group.getChildren().add(getLines());
-        group.setLayoutX(250);
+        group.setLayoutX(50);
     }
 
+    /**
+     * Metoda odpowiadająca za znikanie kontrolki. W momencie jej wywołania zmienia wszystkie obiekty wchodzące w skład
+     * kontrolki tak, aby ich kolor stał się czarny, przez co następuje dopasowanie się do sceny.
+     */
     @Override
     public void turnOff() {
         for(Line line: lines){
@@ -31,6 +48,10 @@ public class DippedBeamLight implements Light {
         }
     }
 
+    /**
+     * Metoda odpowiadająca za pojawianie się kontrolki. W momencie jej wywołania wszystkie obiekty wchodzące w skład
+     * kontrolki uzyskują barwę zieloną, co jest równoznaczne z uaktywnieniem kontrolki.
+     */
     @Override
     public void turnOn() {
         for(Line line: lines){
@@ -41,6 +62,9 @@ public class DippedBeamLight implements Light {
         }
     }
 
+    /**
+     * Tworzy i zwraca część kontrolki reprezentującą reflektor.
+     */
     @Override
     public Group getHeadlight() {
         Group group = new Group();
@@ -78,6 +102,9 @@ public class DippedBeamLight implements Light {
         return group;
     }
 
+    /**
+     * Korzystając z metody createLine tworzy i zwraca grupę linii przedstawiających światła.
+     */
     @Override
     public Group getLines() {
         Group group = new Group();
@@ -86,6 +113,15 @@ public class DippedBeamLight implements Light {
         }
         return group;
     }
+
+    /**
+     *
+     * @param startX początkowa współrzędna x-owa linii.
+     * @param startY początkowa współrzędna y-owa linii.
+     * @param endX końcowa współrzędna x-owa linii.
+     * @param endY końcowa współrzędna y-owa linii.
+     * @return
+     */
 
     @Override
     public Line createLine(int startX, int startY, int endX, int endY) {
@@ -100,9 +136,18 @@ public class DippedBeamLight implements Light {
         return line;
     }
 
+    /**
+     * @return zwraca grupę obiektów wchodzących w skład całej kontrolki.
+     */
+
     public Group getGroup(){
         return group;
     }
+
+    /**
+     *
+     * @param mode parametr typu boolean, wartość false wyłącza kontrolkę, wartość true włącza kontrolkę.
+     */
 
     public void changeMode(boolean mode) {
         if(mode){

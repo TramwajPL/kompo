@@ -8,12 +8,20 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Klasa reprezentująca kontrolkę świateł pozycyjnych.
+ */
+
 public class SideLight implements Light {
 
     private Group group = new Group();
     private List<Line> lines = new ArrayList<>();
     private List<CubicCurve> curves = new ArrayList<>();
 
+    /**
+     * Metoda odpowiadająca za znikanie kontrolki. W momencie jej wywołania zmienia wszystkie obiekty wchodzące w skład
+     * kontrolki tak, aby ich kolor stał się czarny, przez co następuje dopasowanie się do sceny.
+     */
     @Override
     public void turnOff() {
         for(Line line: lines){
@@ -23,7 +31,10 @@ public class SideLight implements Light {
             cc.setStroke(Color.BLACK);
         }
     }
-
+    /**
+     * Metoda odpowiadająca za pojawianie się kontrolki. W momencie jej wywołania wszystkie obiekty wchodzące w skład
+     * kontrolki uzyskują barwę zieloną, co jest równoznaczne z uaktywnieniem kontrolki.
+     */
     @Override
     public void turnOn() {
         for(Line line: lines){
@@ -34,10 +45,13 @@ public class SideLight implements Light {
         }
     }
 
+    /**
+     * W konstruktorze następuje dodanie atrybutów klasy do grupy oraz przesuniecię na osi X.
+     */
     SideLight(){
         group.getChildren().add(getHeadlight());
         group.getChildren().add(getLines());
-        group.setLayoutX(500);
+        group.setLayoutX(300);
 
         Group group2 = new Group();
         group2.getChildren().add(getHeadlight());
@@ -48,6 +62,10 @@ public class SideLight implements Light {
         group.getChildren().add(group2);
     }
 
+    /**
+     * Tworzy i zwraca grupę reprezentującą reflektor.
+     * @return zwraca grupę reprezentującą reflektor kontrolki.
+     */
     @Override
     public Group getHeadlight() {
         Group group = new Group();
@@ -86,6 +104,10 @@ public class SideLight implements Light {
         return group;
     }
 
+    /**
+     * Tworzy i zwraca grupę w której skład wchodzą linie składające się na światła reflektora.
+     * @return zwraca linie wchodzące w skład świateł.
+     */
     @Override
     public Group getLines() {
         Group group = new Group();
@@ -94,7 +116,14 @@ public class SideLight implements Light {
         group.getChildren().add(createLine(20,100,85,75));
         return group;
     }
-
+    /**
+     * Metoda pomocnicza do tworzenia lini świateł.
+     * @param startX początkowa współrzędna x-owa linii.
+     * @param startY początkowa współrzędna y-owa linii.
+     * @param endX końcowa współrzędna x-owa linii.
+     * @param endY końcowa współrzędna y-owa linii.
+     * @return zwraca obiekty klasy Line reprezentujący pojjedynczą linię światłą.
+     */
     @Override
     public Line createLine(int startX, int startY, int endX, int endY) {
         Line line = new Line();
@@ -108,11 +137,17 @@ public class SideLight implements Light {
         return line;
     }
 
+    /**
+     * @return zwraca grupę reprezentującą kontrolkę.
+     */
     @Override
     public Group getGroup() {
         return group;
     }
 
+    /**
+     * @param mode parametr typu boolean, wartość false wyłącza kontrolkę, wartość true włącza kontrolkę.
+     */
     public void changeMode(boolean mode) {
         if(mode){
             turnOn();
