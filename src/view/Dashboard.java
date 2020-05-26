@@ -5,11 +5,9 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logic.Travel;
@@ -24,15 +22,9 @@ import logic.Travel;
 public class Dashboard extends Application {
 
     private Travel travel = new Travel();
-    private SettingsBar sp = new SettingsBar();
-
     @Override
     public void start(Stage stage) {
-        Menu menu1 = new Menu("Menu 1");
-        MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().add(menu1);
-        BorderPane border = new BorderPane(menuBar);
-
+        BorderPane border = new BorderPane();
         border.setStyle("-fx-background-color:black;");
         Scene scene = new Scene(border);
         border.setMinSize(800,600);
