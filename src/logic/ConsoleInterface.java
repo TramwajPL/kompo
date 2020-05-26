@@ -22,8 +22,8 @@ public class ConsoleInterface {
     	this.controller = new ConsoleController();
     	this.reader = new BufferedReader(new InputStreamReader(System.in));
         run();
-        travel.getSpeed().setACC_MULTIPLIER(5);
-        travel.getSpeed().setBRAKE_MULTIPLIER(5);
+        travel.getSpeed().setACC_MULTIPLIER(0.2);
+        travel.getSpeed().setBRAKE_MULTIPLIER(1);
         travel.getSpeed().setAirResistance(0);
         while (choice.compareTo("0") != 0) {
         	//if (choice.compareTo("1") != 0 || choice.compareTo("2") != 0 || choice.compareTo("3") != 0 || choice.compareTo("4") != 0 || choice.compareTo("5") != 0)

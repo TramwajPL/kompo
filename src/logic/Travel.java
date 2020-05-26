@@ -38,18 +38,34 @@ public class Travel{
         }));
     }
 
+    /**
+     * Funkcja zwracaj¹ca wartoœæ pola speed
+     * @return
+     */
     public Speed getSpeed() {
 		return speed;
 	}
 
+    /**
+     * Funkcja ustawiaj¹ca wartoœæ speed obiektu Speed 
+     * @param speed
+     */
 	public void setSpeed(Double speed) {
 		this.speed.setSpeed(speed);
 	}
 
+	/**
+	 * Funkcja zwracaj¹ca wartoœæ pola travelInformation
+	 * @return
+	 */
 	public TravelInformation getTravelInformation() {
 		return travelInformation;
 	}
 
+	/**
+	 * Funkcja ustawiaj¹ca wartoœæ pola travelInformation na podan¹ wartoœæ
+	 * @param travelInformation
+	 */
 	public void setTravelInformation(TravelInformation travelInformation) {
 		this.travelInformation = travelInformation;
 	}

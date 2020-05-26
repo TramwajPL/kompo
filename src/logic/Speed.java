@@ -6,6 +6,8 @@ package logic;
  * -speed
  * -acceleration
  * -airResistance
+ * -ACC_MULTIPLIER
+ * -BRAKE_MULTIPLIER
  */
 public class Speed {
     private double speed = 0.0;
@@ -16,10 +18,18 @@ public class Speed {
     private double ACC_MULTIPLIER = 0.002;
     private double BRAKE_MULTIPLIER = 3.0;
     
+    /**
+     * Funkcja ustawiaj¹ca BRAKE_MULTIPLIER na podan¹ wartoœæ
+     * @param bRAKE_MULTIPLIER
+     */
     public void setBRAKE_MULTIPLIER(double bRAKE_MULTIPLIER) {
 		BRAKE_MULTIPLIER = bRAKE_MULTIPLIER;
 	}
 
+    /**
+     * Funkcja ustawiaj¹ca ACC_MULTIPLIER na podan¹ wartoœæ
+     * @param aCC_MULTIPLIER
+     */
 	public void setACC_MULTIPLIER(double aCC_MULTIPLIER) {
 		ACC_MULTIPLIER = aCC_MULTIPLIER;
 	}
@@ -73,6 +83,10 @@ public class Speed {
         acceleration = (MAX_SPEED_LIMIT - speed) * ACC_MULTIPLIER;
     }
 
+    /**
+     * Funkcja ustawiaj¹ca acceleration na podan¹ wartoœæ
+     * @param acceleration
+     */
     public void setAcceleration(double acceleration) {
 		this.acceleration = acceleration;
 	}
@@ -102,6 +116,10 @@ public class Speed {
         speedNoLowerThanZero();
     }
 
+    /**
+     * Funkcja ustawiaj¹ca pole speed na podan¹ wartoœæ
+     * @param speed
+     */
     public void setSpeed(double speed) {
 		this.speed = speed;
 	}

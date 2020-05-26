@@ -17,6 +17,9 @@ public class TravelInformation {
     private double singleTravelDistance = 0;
     private double fuelConsumed = 0;
 
+    /**
+     * Funkcja zapisu informacji zawartych w klasie do stringu
+     */
     @Override
 	public String toString() {
 		return "TravelInformation [totalDistance=" + totalDistance + ", firstDailyOdometerValue="
@@ -46,26 +49,50 @@ public class TravelInformation {
         this.firstDailyOdometerValue = firstDailyOdometerValue;
     }
 
+    /**
+     * Funkcja zwracaj¹ca wartoœæ pola singleTravelDistance
+     * @return
+     */
     public double getSingleTravelDistance() {
 		return singleTravelDistance;
 	}
 
+    /**
+     * Funkcja ustawiaj¹ca wartoœæ pola speeds na podan¹ wartoœæ
+     * @param speeds
+     */
 	public void setSpeeds(ArrayList<Integer> speeds) {
 		this.speeds = speeds;
 	}
 
+	/**
+	 * Funkcja ustawiaj¹ca wartoœæ pola totalDistance na podan¹ wartoœæ
+	 * @param totalDistance
+	 */
 	public void setTotalDistance(double totalDistance) {
 		this.totalDistance = totalDistance;
 	}
 
+	/**
+	 * Funkcja ustawiaj¹ca wartoœæ pola totalTravelTime na podan¹ wartoœæ
+	 * @param totalTravelTime
+	 */
 	public void setTotalTravelTime(int totalTravelTime) {
 		this.totalTravelTime = totalTravelTime;
 	}
 
+	/**
+	 * Funkcja ustawiaj¹ca wartoœæ pola singleTravelDistance na podan¹ wartoœæ
+	 * @param singleTravelDistance
+	 */
 	public void setSingleTravelDistance(double singleTravelDistance) {
 		this.singleTravelDistance = singleTravelDistance;
 	}
 
+	/**
+	 * Funkcja ustawiaj¹ca wartoœæ pola fuelConsumed na podan¹ wartoœæ
+	 * @param fuelConsumed
+	 */
 	public void setFuelConsumed(double fuelConsumed) {
 		this.fuelConsumed = fuelConsumed;
 	}
