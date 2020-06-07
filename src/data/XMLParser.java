@@ -1,7 +1,6 @@
 package data;
 
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -20,8 +19,39 @@ public class XMLParser {
 	 */
 	public void convert(TravelInformation info) {
 		XStream xstream = new XStream();
-		xstream.alias("info", TravelInformation.class);
-		String xml = xstream.toXML(info);      
+		String xml = xstream.toXML(info);
+
+        BufferedReader reader = new BufferedReader(new StringReader(xml));
+        BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter("../xml.xml", true));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
+        try {
+			while ((xml = reader.readLine()) != null) {
+
+			    try {
+					writer.write(xml + System.getProperty("line.separator"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+        try {
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	/**

@@ -2,11 +2,6 @@ package data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import logic.ContainerInterface;
 import logic.Speed;

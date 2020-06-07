@@ -1,0 +1,19 @@
+<logic.TravelInformation>
+  <speeds>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>11</int>
+    <int>22</int>
+    <int>32</int>
+    <int>41</int>
+    <int>44</int>
+    <int>43</int>
+  </speeds>
+  <totalDistance>3125.166666666667</totalDistance>
+  <firstDailyOdometerValue>3124.166666666667</firstDailyOdometerValue>
+  <secondDailyOdometerValue>3124.166666666667</secondDailyOdometerValue>
+  <totalTravelTime>9</totalTravelTime>
+  <singleTravelDistance>3125.166666666667</singleTravelDistance>
+  <fuelConsumed>390.64583333333337</fuelConsumed>
+</logic.TravelInformation>
