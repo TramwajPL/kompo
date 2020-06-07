@@ -5,19 +5,28 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
-public class Settings {
-    private MenuBar menuBar = new MenuBar();
+/**
+ * Klasa reprezentuj¹ca panel ustawienia
+ */
 
+public class Settings {
+
+    private MenuBar menuBar = new MenuBar();
+    /**
+     * W konstruktorze nastêpuje dodanie dodanie do panelu ustawieñ
+     */
     Settings(){
         menuBar.getMenus().add(settings());
-
     }
 
+    /**
+     *
+     * @return
+     */
     private Menu settings(){
         Menu menu = new Menu();
         menu.setText("Ustawienia");
         menu.getItems().add(aboutProgram());
-        menu.getItems().add(changeLightsColor());
         return menu;
     }
 
@@ -38,15 +47,6 @@ public class Settings {
             };
         });
         return menuItem;
-    }
-
-    private MenuItem changeLightsColor(){
-        RadioMenuItem choice1 = new RadioMenuItem();
-       if(choice1.isSelected()){
-
-       }
-        choice1.setText("Tryb wyœwietlania");
-        return choice1;
     }
 
     MenuBar getMenuBar(){

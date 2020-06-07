@@ -16,7 +16,7 @@ public class TopPanel {
     private SideLight sdl = new SideLight();
     private RearFogLight rfl = new RearFogLight();
     private FrontFogLight ffl = new FrontFogLight();
-    private Settings sp = new Settings();
+    private Settings settings = new Settings();
 
     /**
      * isHblActive - atrybut określający aktywność świateł drogowych.
@@ -46,7 +46,7 @@ public class TopPanel {
         lightsGroup.setScaleX(scale);
         lightsGroup.setScaleY(scale);
         topPanel.getChildren().add(lightsGroup);
-        topPanel.getChildren().add(sp.getMenuBar());
+        topPanel.getChildren().add(settings.getMenuBar());
     }
     /**
      * Metoda określają zachowanie świateł drogowych. W momencie włączenia ich przez użytkownika następuje równoczesne
