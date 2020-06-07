@@ -165,8 +165,4 @@ public class HighBeamLight implements Light {
         else
             turnOff();
     }
-
-    public void changeColor(){
-        colorDisplayMode = !colorDisplayMode;
-    }
 }

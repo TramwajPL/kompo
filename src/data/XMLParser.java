@@ -1,19 +1,18 @@
 package data;
 
-import java.io.*;
-
 import com.thoughtworks.xstream.XStream;
-
 import logic.TravelInformation;
+
+import java.io.*;
 /**
  *Klasa s³u¿¹ca zapisowi i odczytowi 
- *danych z plików xml.
+ *danych z plików XML.
  */
 public class XMLParser {
 	
 	/**
-	 * Funkcja wpisuj¹ca informacje zawarte w Travelinformation do 
-	 * pliku xml
+	 * Funkcja wpisuj¹ca informacje zawarte w TravelInformation do
+	 * pliku XML.
 	 * @param info
 	 */
 	public void convert(TravelInformation info) {
@@ -54,8 +53,8 @@ public class XMLParser {
     }
 	
 	/**
-	 * Funkcja wpisuj¹ca informacje zawarte w pliku xml do 
-	 * Travelinformation
+	 * Funkcja wpisuj¹ca informacje zawarte w pliku XML do
+	 * Travelinformation.
 	 * @param info
 	 */
 	public TravelInformation convertFromXml(TravelInformation info) {

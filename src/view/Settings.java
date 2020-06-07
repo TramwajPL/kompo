@@ -6,21 +6,21 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * Klasa reprezentuj¹ca panel ustawienia
+ * Klasa reprezentuj¹ca panel ustawienia.
  */
 
 public class Settings {
 
     private MenuBar menuBar = new MenuBar();
     /**
-     * W konstruktorze nastêpuje dodanie dodanie do panelu ustawieñ
+     * W konstruktorze nastêpuje dodanie zak³adaki Ustawienia do panelu ustawieñ.
      */
     Settings(){
         menuBar.getMenus().add(settings());
     }
 
     /**
-     *
+     * Utworzenie i dodanie obiektu klasy Menu reprezentuj¹ca ustawienia.
      * @return
      */
     private Menu settings(){
@@ -30,6 +30,10 @@ public class Settings {
         return menu;
     }
 
+    /**
+     * Metoda odpowiedzialna za utworzenie i zwrócenie obiektu klasy menuItem reprezentuj¹cym zak³adkê 'o programie'.
+     * @return
+     */
     private MenuItem aboutProgram(){
         MenuItem menuItem = new MenuItem();
         menuItem.setText("O programie");
@@ -49,6 +53,10 @@ public class Settings {
         return menuItem;
     }
 
+    /**
+     * Zwrócenie ca³ego panelu ustawieñ.
+     * @return
+     */
     MenuBar getMenuBar(){
         return menuBar;
     }

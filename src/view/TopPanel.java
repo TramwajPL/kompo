@@ -142,16 +142,6 @@ public class TopPanel {
             isRflActive = false;
         }
     }
-
-    public void changeLightsColor(){
-        //rfl.changeColor();
-        //sdl.changeColor();
-        //ffl.changeColor();
-        hbl.changeColor();
-        //dbl.changeColor();
-    }
-
-
     /**
      * @return zwraca wszystkie kontrolki wszystkich pięciu świateł jako grupę.
      */
@@ -162,6 +152,5 @@ public class TopPanel {
     /**
      * @return zwraca wszystkie kontrolki wraz z menu ustawienia jako grupę.
      */
-
     public Group getTopPanel() { return topPanel; }
 }

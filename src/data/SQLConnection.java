@@ -5,24 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *  Odpowiada za komunikacje
- *  z baza SQL.
+ *  Odpowiada za komunikacjê z baz¹ SQL.
  */
 public class SQLConnection {
 	private Connection connection;
 	private String dbName;
 	
 	/**
-	 *  Zwraca aktualne polaczenie z baza SQL.
-	 *  
-	 *  @return aktualne polaczanie z baza SQL.
+	 *  Zwraca aktualne po³¹czenie z baz¹ SQL.
+	 *  @return aktualne po³¹czanie z baz¹ SQL.
 	 */
 	public Connection getCon() {
 		return connection;
 	}
 	
 	/**
-	 * Ustanawia polaczenie z baza SQL
+	 * Ustanawia po³¹czenie z baz¹ SQL.
 	 * @throws ClassNotFoundException 
 	 */
 	public void ConnectToDatabase(){
@@ -41,7 +39,7 @@ public class SQLConnection {
 			System.err.println("Blad polaczenia z SQL");
 		}
 	}
-	
+
 	public String getDbName() {
 		return dbName;
 	}

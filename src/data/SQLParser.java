@@ -14,8 +14,7 @@ import java.sql.Statement;
 public class SQLParser {
 	/**
 	 * Funkcja spisuj¹ca z bazy danych na podstawie parametru 
-	 * szybkoœci znajduj¹ce siê w tabeli do listy speeds i 
-	 * zwracaj¹ca ta listê
+	 * szybkoœci znajduj¹ce siê w tabeli do listy speeds i zwracaj¹ca tê listê.
 	 * @param info
 	 * @return speeds
 	 */
