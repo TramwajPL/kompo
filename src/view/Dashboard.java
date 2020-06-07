@@ -13,7 +13,7 @@ import javafx.util.Duration;
 import logic.Travel;
 
 /**
- * Główna klasa odpowiadająca za graficzny interfejs użytkownika. Znajdują się w niej ustawienia wyświetlania sceny
+ * Główna klasa odpowiadająca za graficzny interfejs użytkownika. Znajdują się w niej ustawienia wyświetlania sceny.
  * Agreguje ona wszystkie klasy odpowiedzialne za wyświetlanie poszczególnych elementów interfejsu oraz nasłuchuje na
  * reakcje użytkownika w zakresie naciskania klawiszy klawiatury. Dodatkowo tworzy klasę Travel odpowiadającą
  * za całą logikę programu.
@@ -44,8 +44,8 @@ public class Dashboard extends Application {
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(labelUpdate);
 
-        LightsController lightsController = new LightsController();
-        border.setTop(lightsController.getLightsGroup());
+        TopPanel topPanel = new TopPanel();
+        border.setTop(topPanel.getTopPanel());
         border.setCenter(speedometer.getSpeedometerGroup());
         border.setBottom(travelInformation.getGroup());
 
@@ -78,19 +78,19 @@ public class Dashboard extends Application {
                     travel.cruiseController();
                 }
                 if(ke.getCode() == KeyCode.A) {
-                    lightsController.hblController();
+                    topPanel.hblController();
                 }
                 if(ke.getCode() == KeyCode.S) {
-                    lightsController.dblController();
+                    topPanel.dblController();
                 }
                 if(ke.getCode() == KeyCode.D){
-                    lightsController.sdlController();
+                    topPanel.sdlController();
                 }
                 if(ke.getCode() == KeyCode.F) {
-                    lightsController.rflController();
+                    topPanel.rflController();
                 }
                 if(ke.getCode() == KeyCode.G) {
-                    lightsController.fflController();
+                    topPanel.fflController();
                 }
             }
         });
@@ -100,8 +100,8 @@ public class Dashboard extends Application {
 
         stage.setX(300);
         stage.setY(200);
-        stage.setMinHeight(600);
-        stage.setMinWidth(800);
+        stage.setMinHeight(800);
+        stage.setMinWidth(1200);
         stage.setScene(scene);
         stage.setTitle("Deska rozdzielcza");
         stage.show();

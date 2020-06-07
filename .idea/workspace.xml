@@ -28,8 +28,8 @@
   <component name="ProjectId" id="1bH2sgs1gwVSQ0ksmc2fiY26bth" />
   <component name="PropertiesComponent">
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/xstream-1.4.12.jar!/" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sqljdbc4.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.49655172" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -53,7 +53,7 @@
       <module name="Projekt" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,7 +66,7 @@
       <module name="Projekt" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -79,7 +79,7 @@
       <module name="Projekt" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.*" />
+          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

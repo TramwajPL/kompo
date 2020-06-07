@@ -16,7 +16,6 @@ import static javafx.geometry.NodeOrientation.RIGHT_TO_LEFT;
  * Klasa przedstawiająca wszystkie informację na temat podróży. Stanowi ona dolny panel interfejsu graficznego.
  */
 
-
 public class TravelInformationPanel {
     /**
      * speedLabel - odpowiaada za wyświetlanie aktualnej wartości prędkości.

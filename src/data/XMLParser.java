@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import com.thoughtworks.xstream.XStream;
 
 import logic.TravelInformation;
-
 /**
  *Klasa s³u¿¹ca zapisowi i odczytowi 
  *danych z plików xml.

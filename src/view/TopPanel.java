@@ -5,17 +5,18 @@ import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
 
 /**
- * Klasa stanowiąca kontroler świateł mijania, drogowych, pozycyjnych, przeciwmieglnych tylnych i przednich.
+ * Klasa stanowiąca kontroler świateł oraz zawierająca panel z ustawieniami.
  */
 
-public class LightsController {
-
+public class TopPanel {
+    private Group topPanel = new Group();
     private Group lightsGroup = new Group();
     private HighBeamLight hbl = new HighBeamLight();
     private DippedBeamLight dbl = new DippedBeamLight();
     private SideLight sdl = new SideLight();
     private RearFogLight rfl = new RearFogLight();
     private FrontFogLight ffl = new FrontFogLight();
+    private Settings sp = new Settings();
 
     /**
      * isHblActive - atrybut określający aktywność świateł drogowych.
@@ -24,16 +25,16 @@ public class LightsController {
      * isRflActive - atrybut określający aktywność świateł przeciwmgielnych tylnych.
      * isFflActive - atrybut określający aktywność świateł przeciwmgielnych przednich.
       */
-
     private boolean isHblActive = false;
     private boolean isDblActive = false;
     private boolean isSdlActive = false;
     private boolean isRflActive = false;
     private boolean isFflActive = false;
+
     /**
      * W konstruktorze następuje dodanie obiektów do grupy oraz przeskalowanie i dodanie niewielkiego marginesu.
      */
-    LightsController() {
+    TopPanel() {
         double scale = 0.5;
         BorderPane.setMargin(lightsGroup, new Insets(5));
         lightsGroup.getChildren().add(hbl.getGroup());
@@ -41,11 +42,12 @@ public class LightsController {
         lightsGroup.getChildren().add(sdl.getGroup());
         lightsGroup.getChildren().add(rfl.getGroup());
         lightsGroup.getChildren().add(ffl.getGroup());
+        lightsGroup.setLayoutY(10);
         lightsGroup.setScaleX(scale);
         lightsGroup.setScaleY(scale);
-
+        topPanel.getChildren().add(lightsGroup);
+        topPanel.getChildren().add(sp.getMenuBar());
     }
-
     /**
      * Metoda określają zachowanie świateł drogowych. W momencie włączenia ich przez użytkownika następuje równoczesne
      * sprawdzenie, czy światła mijania i światła pozycyjne są włączone i w przypadku, gdy są, następuje ich
@@ -141,6 +143,15 @@ public class LightsController {
         }
     }
 
+    public void changeLightsColor(){
+        //rfl.changeColor();
+        //sdl.changeColor();
+        //ffl.changeColor();
+        hbl.changeColor();
+        //dbl.changeColor();
+    }
+
+
     /**
      * @return zwraca wszystkie kontrolki wszystkich pięciu świateł jako grupę.
      */
@@ -148,4 +159,9 @@ public class LightsController {
         return lightsGroup;
     }
 
+    /**
+     * @return zwraca wszystkie kontrolki wraz z menu ustawienia jako grupę.
+     */
+
+    public Group getTopPanel() { return topPanel; }
 }

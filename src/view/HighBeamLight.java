@@ -23,6 +23,8 @@ public class HighBeamLight implements Light {
     private List<Line> lines = new ArrayList<>();
     private List<CubicCurve> curves = new ArrayList<>();
 
+    private boolean colorDisplayMode = true;
+
     /**
      * W konstruktorze następuje dodanie obiektów do grupy oraz odpowiednie przesunięcie na osi x.
      */
@@ -121,11 +123,21 @@ public class HighBeamLight implements Light {
      * kontrolki uzyskują barwę niebieską, co jest równoznaczne z uaktywnieniem kontrolki.
      */
     public void turnOn(){
-        for(Line line: lines){
-            line.setStroke(Color.BLUE);
+        if(colorDisplayMode) {
+            for (Line line : lines) {
+                line.setStroke(Color.BLUE);
+            }
+            for (CubicCurve cc : curves) {
+                cc.setStroke(Color.BLUE);
+            }
         }
-        for(CubicCurve cc: curves){
-            cc.setStroke(Color.BLUE);
+        else{
+            for (Line line : lines) {
+                line.setStroke(Color.MAGENTA);
+            }
+            for (CubicCurve cc : curves) {
+                cc.setStroke(Color.MAGENTA);
+            }
         }
     }
     /**
@@ -152,5 +164,9 @@ public class HighBeamLight implements Light {
         }
         else
             turnOff();
+    }
+
+    public void changeColor(){
+        colorDisplayMode = !colorDisplayMode;
     }
 }

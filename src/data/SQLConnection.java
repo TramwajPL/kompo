@@ -3,7 +3,7 @@ package data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import com.microsoft.sqlserver.jdbc.SQLServerDriver;
+
 /**
  *  Odpowiada za komunikacje
  *  z baza SQL.
@@ -34,7 +34,7 @@ public class SQLConnection {
 			String user = "sa";
 			String pass = "123456789";
 			String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-			Class.forName(driver).newInstance(); 			
+			Class.forName(driver).newInstance();
 			connection = DriverManager.getConnection(url, user, pass);
 			
 		} catch (Exception ex) {

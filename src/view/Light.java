@@ -53,4 +53,6 @@ public interface Light {
      * @param mode parametr typu boolean, wartość false wyłącza kontrolkę, wartość true włącza kontrolkę.
      */
     void changeMode(boolean mode);
+
+
 }

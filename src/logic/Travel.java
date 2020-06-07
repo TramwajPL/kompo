@@ -1,10 +1,10 @@
 package logic;
 
-import java.util.Timer;
-
 import data.SQLConnection;
 import data.SQLParser;
 import data.XMLParser;
+
+import java.util.Timer;
 
 /**
  * Klasa s³u¿¹ca do oblczania przebytej drogi
@@ -24,7 +24,7 @@ public class Travel{
     	sql.ConnectToDatabase();
         SQLParser sqlParser = new SQLParser();
         XMLParser xmlParser = new XMLParser();
-        sqlParser.convertFromSQL(travelInformation, sql);
+        //sqlParser.convertFromSQL(travelInformation, sql);
         TravelTasks travelTasks = new TravelTasks(speed, travelInformation);
         Timer timer = new Timer(true);
         timer.scheduleAtFixedRate(travelTasks, 0, 1000);

@@ -1,15 +1,11 @@
 package data;
 
+import logic.TravelInformation;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import logic.Speed;
-import logic.TooLargeIndexException;
-import logic.TravelInformation;
 
 /**
  *  Klasa zapisuj¹ca i odczytuj¹ca dane 
@@ -20,7 +16,7 @@ public class SQLParser {
 	 * Funkcja spisuj¹ca z bazy danych na podstawie parametru 
 	 * szybkoœci znajduj¹ce siê w tabeli do listy speeds i 
 	 * zwracaj¹ca ta listê
-	 * @param sql
+	 * @param info
 	 * @return speeds
 	 */
 	public TravelInformation convertFromSQL(TravelInformation info, SQLConnection sql) {
@@ -61,7 +57,7 @@ public class SQLParser {
 	/**
 	 * Funkcja zapisuj¹ca szybkoœci z listy do tabeli 
 	 * znajduj¹cej siê w bazie danych sql.
-	 * @param speeds
+	 * @param info
 	 * @param sql
 	 */
 	public void convert(TravelInformation info, SQLConnection sql) {

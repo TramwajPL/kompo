@@ -41,5 +41,4 @@ public class Init {
 			e.printStackTrace();
 		}
     }
-
 }
